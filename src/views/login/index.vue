@@ -60,14 +60,21 @@ export default {
       // TODO: 2. 表单验证
 
       // 3. 提交表单请求登录
+      this.$toast.loading({
+        message: '登录中...',
+        forbidClick: true, // 禁用背景点击
+        duration: 0 // 持续时间，默认 2000，0 表示持续展示不关闭
+      })
+
       try {
         const res = await login(user)
         console.log('登录成功', res)
+        this.$toast.success('登录成功')
       } catch (err) {
         if (err.response.status === 400) {
-          console.log('手机号或验证码错误')
+          this.$toast.fail('手机号或验证码错误')
         } else {
-          console.log('登录失败，请稍后重试', err)
+          this.$toast.fail('登录失败，请稍后重试')
         }
       }
 
