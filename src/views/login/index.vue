@@ -74,8 +74,8 @@ export default {
   data () {
     return {
       user: {
-        mobile: '', // 手机号
-        code: '' // 验证码
+        mobile: '13911111111', // 手机号
+        code: '246810' // 验证码
       },
       userFormRules: {
         mobile: [{
@@ -102,21 +102,17 @@ export default {
   mounted () {},
   methods: {
     async onSubmit () {
-      // 1. 获取表单数据
-      const user = this.user
-
-      // TODO: 2. 表单验证
-
-      // 3. 提交表单请求登录
+      // 1. 展示登陆中 loading
       this.$toast.loading({
         message: '登录中...',
         forbidClick: true, // 禁用背景点击
         duration: 0 // 持续时间，默认 2000，0 表示持续展示不关闭
       })
 
+      // 2. 请求登录
       try {
-        const res = await login(user)
-        console.log('登录成功', res)
+        const { data } = await login(this.user)
+        this.$store.commit('setUser', data.data)
         this.$toast.success('登录成功')
       } catch (err) {
         if (err.response.status === 400) {
@@ -125,12 +121,9 @@ export default {
           this.$toast.fail('登录失败，请稍后重试')
         }
       }
-
-      // 4. 根据请求响应结果处理后续操作
     },
 
     async onSendSms () {
-      console.log('onSendSms')
       // 1. 校验手机号
       try {
         await this.$refs.loginForm.validate('mobile')
