@@ -7,34 +7,26 @@
         @click="$router.push('/login')"
       >
     </div>
-    <!-- <div class="grid-nav"></div> -->
-    <van-grid class="grid-nav">
-      <van-grid-item
-        class="grid-item"
-        icon="shoucang"
-      >
-        <i slot="icon" class="toutiao toutiao-shoucang"></i>
-        <span slot="text" class="text">收藏</span>
-      </van-grid-item>
-      <van-grid-item
-        class="grid-item"
-        icon="photo-o"
-      >
-        <span slot="text" class="text">历史</span>
-        <i slot="icon" class="toutiao toutiao-lishi"></i>
-      </van-grid-item>
-      <van-grid-item
-        class="grid-item"
-      >
-        <i slot="icon" class="toutiao toutiao-zuopin"></i>
-        <span slot="text" class="text">作品</span>
-      </van-grid-item>
-    </van-grid>
+    <div class="grid-nav mb-9">
+      <div class="grid-item">
+        <i class="toutiao toutiao-shoucang"></i>
+        <span class="text">收藏</span>
+      </div>
+      <div class="grid-item">
+        <i class="toutiao toutiao-lishi"></i>
+        <span class="text">历史</span>
+      </div>
+      <div class="grid-item">
+        <i class="toutiao toutiao-zuopin"></i>
+        <span class="text">作品</span>
+      </div>
+    </div>
     <van-cell title="消息通知" is-link url="" />
-    <van-cell title="实名认证" is-link url="" />
+    <van-cell class="mb-9" title="实名认证" is-link url="" />
     <van-cell title="用户反馈" is-link url="" />
     <van-cell title="小智同学" is-link url="" />
-    <van-cell title="系统设置" is-link url="" />
+    <van-cell class="mb-9" title="系统设置" is-link url="" />
+    <van-cell style="text-align: center;" title="退出登录" />
   </div>
 </template>
 
@@ -69,18 +61,46 @@ export default {
     }
   }
 
-  .grid-nav {
-    .grid-item {
-      height: 141px;
+  > .grid-nav {
+    display: flex;
+    > .grid-item {
       flex: 1;
+      height: 141px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #fff;
+      position: relative;
       i.toutiao {
         font-size: 45px;
+      }
+      .toutiao-shoucang {
+        color: #eb5253;
+      }
+      .toutiao-lishi {
+        color: #ff9d1d;
+      }
+      .toutiao-zuopin {
+        color: #678eff;
       }
       span.text {
         font-size: 28px;
         color: #333;
       }
+      &:not(:last-child):after {
+        position: absolute;
+        right: 0;
+        content: "";
+        width: 1px;
+        height: 102px;
+        background-color: #edeff3;
+      }
     }
+  }
+
+  .mb-9 {
+    margin-bottom: 9px;
   }
 }
 </style>
