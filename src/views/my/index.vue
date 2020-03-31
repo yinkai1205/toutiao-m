@@ -1,16 +1,7 @@
 <template>
   <div class="my-container">
-    <!-- 未登录头部 -->
-    <div class="header not-login">
-      <div class="login-btn" @click="$router.push('/login')">
-        <img class="mobile-img" src="~@/assets/mobile.png" alt="">
-        <span class="text">登录 / 注册</span>
-      </div>
-    </div>
-    <!-- /未登录头部 -->
-
     <!-- 已登录头部 -->
-    <div class="header user-info">
+    <div v-if="user" class="header user-info">
       <div class="base-info">
         <div class="left">
           <van-image
@@ -46,6 +37,15 @@
     </div>
     <!-- /已登录头部 -->
 
+    <!-- 未登录头部 -->
+    <div v-else class="header not-login">
+      <div class="login-btn" @click="$router.push('/login')">
+        <img class="mobile-img" src="~@/assets/mobile.png" alt="">
+        <span class="text">登录 / 注册</span>
+      </div>
+    </div>
+    <!-- /未登录头部 -->
+
     <!-- 宫格导航 -->
     <van-grid class="grid-nav mb-9" :column-num="2" clickable>
       <van-grid-item class="grid-item">
@@ -59,13 +59,15 @@
     </van-grid>
     <!-- /宫格导航 -->
 
-    <van-cell title="消息通知" is-link to="index" />
-    <van-cell class="mb-9" title="小智同学" is-link to="index" />
-    <van-cell class="logout-cell" title="退出登录" to="index" />
+    <van-cell title="消息通知" is-link />
+    <van-cell class="mb-9" title="小智同学" is-link />
+    <van-cell v-if="user" class="logout-cell" title="退出登录" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'MyIndex',
   components: {},
@@ -73,7 +75,9 @@ export default {
   data () {
     return {}
   },
-  computed: {},
+  computed: {
+    ...mapState(['user'])
+  },
   watch: {},
   created () {},
   mounted () {},
