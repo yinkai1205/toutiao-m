@@ -1,12 +1,15 @@
 <template>
   <div class="my-container">
+    <!-- 未登录头部 -->
     <div class="header not-login">
       <div class="login-btn" @click="$router.push('/login')">
         <img class="mobile-img" src="~@/assets/mobile.png" alt="">
         <span class="text">登录 / 注册</span>
       </div>
     </div>
+    <!-- /未登录头部 -->
 
+    <!-- 已登录头部 -->
     <div class="header user-info">
       <div class="base-info">
         <div class="left">
@@ -41,9 +44,10 @@
         </div>
       </div>
     </div>
+    <!-- /已登录头部 -->
 
-    <!-- 导航 -->
-    <van-grid class="grid-nav" :column-num="2" clickable>
+    <!-- 宫格导航 -->
+    <van-grid class="grid-nav mb-9" :column-num="2" clickable>
       <van-grid-item class="grid-item">
         <i slot="icon" class="toutiao toutiao-shoucang"></i>
         <span slot="text" class="text">收藏</span>
@@ -53,7 +57,11 @@
         <span slot="text" class="text">历史</span>
       </van-grid-item>
     </van-grid>
-    <!-- /导航 -->
+    <!-- /宫格导航 -->
+
+    <van-cell title="消息通知" is-link to="index" />
+    <van-cell class="mb-9" title="小智同学" is-link to="index" />
+    <van-cell class="logout-cell" title="退出登录" to="index" />
   </div>
 </template>
 
@@ -161,6 +169,15 @@ export default {
         font-size: 28px;
       }
     }
+  }
+
+  .logout-cell {
+    text-align: center;
+    color: #d86262;
+  }
+
+  .mb-9 {
+    margin-bottom: 9px;
   }
 }
 </style>
