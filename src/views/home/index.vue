@@ -12,6 +12,20 @@
       >搜索</van-button>
     </van-nav-bar>
     <!-- /导航栏 -->
+
+    <!-- 频道列表 -->
+    <!--
+      通过v-model绑定当前激活标签对应的索引值，默认情况下启用第一个标签
+      通过animated属性可以开启切换标签内容时的转场动画
+      通过swipeable属性可以开启滑动切换标签页
+     -->
+    <van-tabs class="channel-tabs" v-model="active" animated swipeable>
+      <van-tab title="标签 1">内容 1</van-tab>
+      <van-tab title="标签 2">内容 2</van-tab>
+      <van-tab title="标签 3">内容 3</van-tab>
+      <van-tab title="标签 4">内容 4</van-tab>
+    </van-tabs>
+    <!-- /频道列表 -->
   </div>
 </template>
 
@@ -21,7 +35,9 @@ export default {
   components: {},
   props: {},
   data () {
-    return {}
+    return {
+      active: 0
+    }
   },
   computed: {},
   watch: {},
@@ -44,6 +60,15 @@ export default {
     font-size: 28px;
     .van-icon {
       font-size: 32px;
+    }
+  }
+
+  /deep/ .channel-tabs {
+    .van-tabs__content {
+      // 响应式布局单位：vw 和 vh
+      // vw: 1vw = 布局视口宽度的1%
+      // vh: 1vh = 布局视口高度的1%
+      min-height: 79vh;
     }
   }
 }
