@@ -24,6 +24,8 @@
       <van-tab title="标签 2">内容 2</van-tab>
       <van-tab title="标签 3">内容 3</van-tab>
       <van-tab title="标签 4">内容 4</van-tab>
+      <van-tab title="标签 4">内容 4</van-tab>
+      <van-tab title="标签 4">内容 4</van-tab>
     </van-tabs>
     <!-- /频道列表 -->
   </div>
@@ -69,6 +71,29 @@ export default {
       // vw: 1vw = 布局视口宽度的1%
       // vh: 1vh = 布局视口高度的1%
       min-height: 79vh;
+    }
+
+    .van-tabs__wrap {
+      height: 82px;
+    }
+
+    .van-tab {
+      border-right: 1px solid #edeff3;
+      min-width: 200px;
+      .van-tab__text {
+        font-size: 30px;
+      }
+    }
+
+    .van-tabs__nav {
+      padding-bottom: 0;
+    }
+
+    .van-tabs__line {
+      bottom: 8px;
+      width: 31px !important;
+      height: 6px;
+      background-color: #3296fa;
     }
   }
 }
