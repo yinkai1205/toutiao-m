@@ -20,12 +20,15 @@
       通过 swipeable 属性可以开启滑动切换标签页
      -->
     <van-tabs class="channel-tabs" v-model="active" animated swipeable>
-      <van-tab title="标签 1">内容 1</van-tab>
-      <van-tab title="标签 2">内容 2</van-tab>
-      <van-tab title="标签 3">内容 3</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
+      <van-tab
+        :title="channel.name"
+        v-for="channel in channels"
+        :key="channel.id"
+      >
+        <!-- 文章列表 -->
+        <article-list :channel="channel" />
+        <!-- 文章列表 -->
+      </van-tab>
       <div slot="nav-right" class="placeholder"></div>
       <div slot="nav-right" class="hamburger-btn">
         <i class="toutiao toutiao-gengduo"></i>
@@ -36,20 +39,37 @@
 </template>
 
 <script>
+import { getUserChannels } from '@/api/user'
+import ArticleList from './components/article-list'
+
 export default {
   name: 'HomeIndex',
-  components: {},
+  components: {
+    ArticleList
+  },
   props: {},
   data () {
     return {
-      active: 0
+      active: 0,
+      channels: [] // 频道列表
     }
   },
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    this.loadChannels()
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    async loadChannels () {
+      try {
+        const { data } = await getUserChannels()
+        this.channels = data.data.channels
+      } catch (err) {
+        this.$toast('获取频道数据失败')
+      }
+    }
+  }
 }
 </script>
 
@@ -115,7 +135,7 @@ export default {
       width: 66px;
       height: 82px;
       background-color: #fff;
-      opacity: 0.902;
+      background-color: rgba(255, 255, 255, 0.902);
       i.toutiao {
         font-size: 33px;
       }
@@ -124,7 +144,7 @@ export default {
         position: absolute;
         left: 0;
         width: 1px;
-        height: 100%;
+        height: 58px;
         background-image: url(~@/assets/gradient-gray-line.png);
         background-size: contain;
       }
