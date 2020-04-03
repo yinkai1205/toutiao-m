@@ -75,6 +75,7 @@ export default {
 
 <style scoped lang="less">
 .home-container {
+  padding-bottom: 100px;
   .van-nav-bar__title {
     max-width: unset;
   }
