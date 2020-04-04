@@ -148,4 +148,12 @@ export default {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.article-list {
+  // 视口单位：相对单位
+  // vw: 1vw = 布局视口宽度的百分之一
+  // vh: 1vh = 布局视口高度的百分之一
+  height: 80vh;
+  overflow-y: auto;
+}
+</style>

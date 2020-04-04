@@ -26,7 +26,7 @@
         :key="channel.id"
       >
         <!-- 文章列表 -->
-        <article-list :channel="channel" />
+        <article-list ref="article-list" :channel="channel" />
         <!-- 文章列表 -->
       </van-tab>
       <div slot="nav-right" class="placeholder"></div>
@@ -59,7 +59,9 @@ export default {
   created () {
     this.loadChannels()
   },
-  mounted () {},
+  mounted () {
+    window.home = this
+  },
   methods: {
     async loadChannels () {
       try {
