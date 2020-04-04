@@ -94,13 +94,6 @@ export default {
   }
 
   /deep/ .channel-tabs {
-    .van-tabs__content {
-      // 响应式布局单位：vw 和 vh
-      // vw: 1vw = 布局视口宽度的1%
-      // vh: 1vh = 布局视口高度的1%
-      min-height: 79vh;
-    }
-
     .van-tabs__wrap {
       position: fixed;
       top: 92px;
@@ -113,9 +106,12 @@ export default {
     .van-tab {
       border-right: 1px solid #edeff3;
       min-width: 200px;
-      .van-tab__text {
-        font-size: 30px;
-      }
+      font-size: 30px;
+      color: #777777;
+    }
+
+    .van-tab--active {
+      color: #333333;
     }
 
     .van-tabs__nav {
