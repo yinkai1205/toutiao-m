@@ -150,10 +150,10 @@ export default {
 
 <style scoped lang="less">
 .article-list {
-  // 视口单位：相对单位
+  // 视口单位：相对单位，不受父元素影响
   // vw: 1vw = 布局视口宽度的百分之一
   // vh: 1vh = 布局视口高度的百分之一
-  height: 80vh;
+  height: 79vh;
   overflow-y: auto;
 }
 </style>
