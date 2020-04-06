@@ -47,7 +47,9 @@
       close-icon-position="top-left"
       position="bottom"
       :style="{ height: '100%' }"
-    />
+    >
+      <channel-edit />
+    </van-popup>
     <!-- /频道编辑弹出层 -->
   </div>
 </template>
@@ -55,11 +57,13 @@
 <script>
 import { getUserChannels } from '@/api/user'
 import ArticleList from './components/article-list'
+import ChannelEdit from './components/channel-edit'
 
 export default {
   name: 'HomeIndex',
   components: {
-    ArticleList
+    ArticleList,
+    ChannelEdit
   },
   props: {},
   data () {
