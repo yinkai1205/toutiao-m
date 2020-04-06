@@ -61,6 +61,12 @@ export default {
     color: #3a3a3a;
   }
 
+  .van-cell__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   .van-cell__value {
     flex: unset;
     width: 232px;
