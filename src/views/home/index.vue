@@ -95,12 +95,12 @@ export default {
       }
     },
 
-    onUpdateActive (index) {
+    onUpdateActive (index, isChennelEditShow = true) {
       // 更新激活的频道项
       this.active = index
 
       // 关闭编辑频道弹层
-      this.isChennelEditShow = false
+      this.isChennelEditShow = isChennelEditShow
     }
   }
 }
