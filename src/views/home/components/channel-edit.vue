@@ -8,14 +8,14 @@
         plain
         round
         size="mini"
-      >编辑</van-button>
+        @click="isEdit = !isEdit"
+      >{{ isEdit ? '完成' : '编辑' }}</van-button>
     </van-cell>
     <van-grid class="my-grid" :gutter="10">
       <van-grid-item
         class="grid-item"
         v-for="(channel, index) in myChannels"
         :key="index"
-        icon="clear"
       >
         <!--
           v-bind:class 语法
@@ -24,6 +24,11 @@
                       true，则作用该类名
                       false，不作用类名
          -->
+        <van-icon
+          v-show="isEdit && !fiexChannels.includes(channel.id)"
+          slot="icon"
+          name="clear"
+        ></van-icon>
         <span
           class="text"
           :class="{ active: index === active }"
@@ -68,7 +73,9 @@ export default {
   },
   data () {
     return {
-      allChannels: [] // 所有频道
+      allChannels: [], // 所有频道
+      isEdit: false, // 控制编辑状态的显示
+      fiexChannels: [0] // 固定频道，不允许删除
     }
   },
   computed: {
@@ -157,6 +164,9 @@ export default {
       }
       .active {
         color: red;
+      }
+      .van-grid-item__icon-wrapper {
+        position: unset;
       }
     }
   }
