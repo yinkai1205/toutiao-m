@@ -33,7 +33,10 @@
     <!-- /联想建议 -->
 
     <!-- 搜索历史记录 -->
-    <search-history v-else />
+    <search-history
+      v-else
+      :search-histories="searchHistories"
+    />
     <!-- /搜索历史记录 -->
   </div>
 </template>
@@ -78,6 +81,7 @@ export default {
       // 渲染搜索结果
       this.isResultShow = true
     },
+
     onCancel () {
       this.$router.back()
     }
