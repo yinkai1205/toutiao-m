@@ -11,7 +11,7 @@
 
     <div class="main-wrap">
       <!-- 加载中 -->
-      <div class="loading-wrap">
+      <div v-if="loading" class="loading-wrap">
         <van-loading
           color="#3296fa"
           vertical
@@ -20,7 +20,7 @@
       <!-- /加载中 -->
 
       <!-- 加载完成-文章详情 -->
-      <div class="article-detail">
+      <div v-else-if="article.title" class="article-detail">
         <!-- 文章标题 -->
         <h1 class="article-title">{{ article.title }}</h1>
         <!-- /文章标题 -->
@@ -59,17 +59,20 @@
       <!-- /加载完成-文章详情 -->
 
       <!-- 加载失败：404 -->
-      <div class="error-wrap">
+      <div v-else-if="errStatus === 404" class="error-wrap">
         <van-icon name="failure" />
         <p class="text">该资源不存在或已删除！</p>
       </div>
       <!-- /加载失败：404 -->
 
       <!-- 加载失败：其它未知错误（例如网络原因或服务端异常） -->
-      <div class="error-wrap">
+      <div v-else class="error-wrap">
         <van-icon name="failure" />
         <p class="text">内容加载失败！</p>
-        <van-button class="retry-btn">点击重试</van-button>
+        <van-button
+          class="retry-btn"
+          @click="loadArticle"
+        >点击重试</van-button>
       </div>
       <!-- /加载失败：其它未知错误（例如网络原因或服务端异常） -->
     </div>
@@ -115,7 +118,9 @@ export default {
   },
   data () {
     return {
-      article: {} // 文章详情
+      article: {}, // 文章详情
+      loading: true, // 加载中的 loading 状态
+      errStatus: 0 // 失败的状态码
     }
   },
   computed: {},
@@ -126,12 +131,29 @@ export default {
   mounted () {},
   methods: {
     async loadArticle () {
+      // 展示 loading 加载中
+      this.loading = true
       try {
         const { data } = await getArticleById(this.articleId)
+
+        // if (Math.random() > 0.5) {
+        //   JSON.parse('dsankljdnskaljndlkjsa')
+        // }
+
         this.article = data.data
+
+        // 请求成功，关闭 loading
+        // this.loading = false
       } catch (err) {
+        if (err.response && err.response.status === 404) {
+          this.errStatus = 404
+        }
+        // this.loading = false
         console.log('获取数据失败', err)
       }
+
+      // 无论成功还是失败，都需要关闭 loading
+      this.loading = false
     }
   }
 }
