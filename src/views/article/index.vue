@@ -53,7 +53,10 @@
         <!-- /用户信息 -->
 
         <!-- 文章内容 -->
-        <div class="article-content" v-html="article.content"></div>
+        <div
+          class="article-content markdown-body"
+          v-html="article.content"
+        ></div>
         <van-divider>正文结束</van-divider>
       </div>
       <!-- /加载完成-文章详情 -->
@@ -149,7 +152,7 @@ export default {
           this.errStatus = 404
         }
         // this.loading = false
-        console.log('获取数据失败', err)
+        // console.log('获取数据失败', err)
       }
 
       // 无论成功还是失败，都需要关闭 loading
@@ -160,6 +163,8 @@ export default {
 </script>
 
 <style scoped lang="less">
+@import "./github-markdown.css";
+
 .article-container {
   .main-wrap {
     position: fixed;
