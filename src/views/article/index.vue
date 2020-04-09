@@ -56,6 +56,7 @@
         <div
           class="article-content markdown-body"
           v-html="article.content"
+          ref="article-content"
         ></div>
         <van-divider>正文结束</van-divider>
       </div>
@@ -109,6 +110,7 @@
 
 <script>
 import { getArticleById } from '@/api/article'
+import { ImagePreview } from 'vant'
 
 export default {
   name: 'ArticleIndex',
@@ -143,7 +145,14 @@ export default {
         //   JSON.parse('dsankljdnskaljndlkjsa')
         // }
 
+        // 数据驱动视图这件事儿不是立即的
         this.article = data.data
+
+        // 初始化图片点击预览
+        // console.log(this.$refs['article-content'])
+        setTimeout(() => {
+          this.previewImage()
+        }, 0)
 
         // 请求成功，关闭 loading
         // this.loading = false
@@ -157,6 +166,28 @@ export default {
 
       // 无论成功还是失败，都需要关闭 loading
       this.loading = false
+    },
+
+    previewImage () {
+      // 得到所有的 img 节点
+      const articleContent = this.$refs['article-content']
+      const imgs = articleContent.querySelectorAll('img')
+
+      // 获取所有 img 地址
+      const images = []
+      imgs.forEach((img, index) => {
+        images.push(img.src)
+
+        // 给每个 img 注册点击事件，在处理函数中调用预览
+        img.onclick = () => {
+          ImagePreview({
+            // 预览的图片地址数组
+            images,
+            // 起始位置，从 0 开始
+            startPosition: index
+          })
+        }
+      })
     }
   }
 }
