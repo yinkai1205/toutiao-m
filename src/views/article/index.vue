@@ -6,7 +6,12 @@
 export default {
   name: 'ArticleIndex',
   components: {},
-  props: {},
+  props: {
+    articleId: {
+      type: [Number, String],
+      required: true
+    }
+  },
   data () {
     return {}
   },
