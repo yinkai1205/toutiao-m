@@ -118,17 +118,17 @@
         size="small"
       >写评论</van-button>
       <van-icon
+        class="comment-icon"
         name="comment-o"
         info="123"
-        color="#777"
       />
-      <van-icon
-        color="#777"
-        name="star-o"
+      <van-button
+        class="btn-item"
+        icon="star-o"
       />
-      <van-icon
-        color="#777"
-        name="good-job-o"
+      <van-button
+        class="btn-item"
+        icon="good-job-o"
       />
       <van-icon name="share" color="#777777"></van-icon>
     </div>
@@ -334,10 +334,27 @@ export default {
     }
     .van-icon {
       font-size: 40px;
+    }
+    .comment-icon {
+      top: 2px;
+      color: #777;
       .van-info {
         font-size: 16px;
         background-color: #e22829;
       }
+    }
+    .btn-item {
+      border: none;
+      padding: 0;
+      height: 40px;
+      line-height: 40px;
+      color: #777777
+    }
+    .collect-btn--collected {
+      color: #ffa500;
+    }
+    .like-btn--liked {
+      color: #e5645f;
     }
   }
 }
