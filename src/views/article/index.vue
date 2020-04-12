@@ -122,10 +122,7 @@
         name="comment-o"
         info="123"
       />
-      <van-button
-        class="btn-item"
-        icon="star-o"
-      />
+      <collect-article class="btn-item" />
       <van-button
         class="btn-item"
         icon="good-job-o"
@@ -140,11 +137,13 @@
 import { getArticleById } from '@/api/article'
 import { ImagePreview } from 'vant'
 import FollowUser from '@/components/follow-user'
+import CollectArticle from '@/components/collect-article'
 
 export default {
   name: 'ArticleIndex',
   components: {
-    FollowUser
+    FollowUser,
+    CollectArticle
   },
   props: {
     articleId: {
@@ -332,7 +331,7 @@ export default {
       line-height: 46px;
       color: #a7a7a7;
     }
-    .van-icon {
+    /deep/ .van-icon {
       font-size: 40px;
     }
     .comment-icon {
