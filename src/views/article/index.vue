@@ -90,6 +90,7 @@
         <!-- 文章评论列表 -->
         <comment-list
           :source="article.art_id"
+          @onload-success="totalCommentCount = $event.total_count"
         />
         <!-- /文章评论列表 -->
         <!-- 底部区域 -->
@@ -103,7 +104,7 @@
           <van-icon
             class="comment-icon"
             name="comment-o"
-            info="123"
+            :info="totalCommentCount"
           />
           <collect-article
             class="btn-item"
@@ -169,7 +170,8 @@ export default {
       article: {}, // 文章详情
       loading: true, // 加载中的 loading 状态
       errStatus: 0, // 失败的状态码
-      followLoading: false
+      followLoading: false,
+      totalCommentCount: 0
     }
   },
   computed: {},
