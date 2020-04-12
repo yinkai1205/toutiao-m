@@ -1,6 +1,9 @@
 <template>
   <van-button
-    icon="star-o"
+    :icon="value ? 'star' : 'star-o'"
+    :class="{
+      collected: value
+    }"
   />
 </template>
 
@@ -8,7 +11,12 @@
 export default {
   name: 'CollectArticle',
   components: {},
-  props: {},
+  props: {
+    value: {
+      type: Boolean,
+      required: true
+    }
+  },
   data () {
     return {}
   },
@@ -20,4 +28,10 @@ export default {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.collected {
+  .van-icon {
+    color: #ffa500;
+  }
+}
+</style>
