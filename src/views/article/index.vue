@@ -92,6 +92,7 @@
           :source="article.art_id"
           :list="commentList"
           @onload-success="totalCommentCount = $event.total_count"
+          @reply-click="onReplyClick"
         />
         <!-- /文章评论列表 -->
         <!-- 底部区域 -->
@@ -270,6 +271,13 @@ export default {
       this.isPostShow = false
       // 将发布内容显示到列表顶部
       this.commentList.unshift(data.new_obj)
+    },
+
+    onReplyClick (comment) {
+      console.log(comment)
+
+      // 显示评论回复弹出层
+      this.isReplyShow = true
     }
   }
 }
