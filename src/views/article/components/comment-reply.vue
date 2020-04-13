@@ -6,7 +6,12 @@
 export default {
   name: 'CommentReply',
   components: {},
-  props: {},
+  props: {
+    comment: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {}
   },

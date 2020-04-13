@@ -162,7 +162,9 @@
       position="bottom"
       style="height: 100%;"
     >
-      <comment-reply />
+      <comment-reply
+        :comment="currentComment"
+      />
     </van-popup>
     <!-- /评论回复 -->
   </div>
@@ -203,7 +205,8 @@ export default {
       totalCommentCount: 0,
       isPostShow: false, // 控制发布评论的显示状态
       commentList: [], // 评论列表
-      isReplyShow: false
+      isReplyShow: false,
+      currentComment: {} // 当前点击回复的评论项
     }
   },
   computed: {},
@@ -276,7 +279,7 @@ export default {
     },
 
     onReplyClick (comment) {
-      console.log(comment)
+      this.currentComment = comment
 
       // 显示评论回复弹出层
       this.isReplyShow = true
