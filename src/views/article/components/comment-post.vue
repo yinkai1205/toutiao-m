@@ -12,8 +12,8 @@
     />
     <van-button
       class="post-btn"
-      :disabled="!message.length"
       @click="onPost"
+      :disabled="!message.trim().length"
     >发布</van-button>
   </div>
 </template>
