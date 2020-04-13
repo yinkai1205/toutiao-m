@@ -12,6 +12,7 @@
     />
     <van-button
       class="post-btn"
+      :disabled="!message.length"
       @click="onPost"
     >发布</van-button>
   </div>
