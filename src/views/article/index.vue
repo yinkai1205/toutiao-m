@@ -164,6 +164,7 @@
     >
       <comment-reply
         :comment="currentComment"
+        @close="isReplyShow = false"
       />
     </van-popup>
     <!-- /评论回复 -->
