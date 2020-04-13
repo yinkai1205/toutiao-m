@@ -154,6 +154,16 @@
       </div>
       <!-- /加载失败：其它未知错误（例如网络原因或服务端异常） -->
     </div>
+
+    <!-- 评论回复 -->
+    <van-popup
+      v-model="isReplyShow"
+      position="bottom"
+      style="height: 100%;"
+    >
+      hello
+    </van-popup>
+    <!-- /评论回复 -->
   </div>
 </template>
 
@@ -189,7 +199,8 @@ export default {
       followLoading: false,
       totalCommentCount: 0,
       isPostShow: false, // 控制发布评论的显示状态
-      commentList: [] // 评论列表
+      commentList: [], // 评论列表
+      isReplyShow: false
     }
   },
   computed: {},
