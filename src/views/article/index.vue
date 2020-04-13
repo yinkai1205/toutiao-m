@@ -126,7 +126,9 @@
           v-model="isPostShow"
           position="bottom"
         >
-          <comment-post />
+          <comment-post
+            :target="article.art_id"
+          />
         </van-popup>
         <!-- 发布评论 -->
       </div>
