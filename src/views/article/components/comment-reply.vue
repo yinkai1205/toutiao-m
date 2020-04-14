@@ -37,7 +37,9 @@
 
     <!-- 发布评论 -->
     <van-popup v-model="isPostShow" position="bottom">
-      123
+      <comment-post
+        :target="comment.com_id"
+      />
     </van-popup>
     <!-- /发布评论 -->
   </div>
@@ -46,12 +48,14 @@
 <script>
 import CommentItem from './comment-item'
 import CommentList from './comment-list'
+import CommentPost from './comment-post'
 
 export default {
   name: 'CommentReply',
   components: {
     CommentItem,
-    CommentList
+    CommentList,
+    CommentPost
   },
   props: {
     comment: {
