@@ -24,10 +24,21 @@
       <!-- /评论的回复列表 -->
     </div>
 
-    <!-- 发布评论 -->
+    <!-- 底部区域 -->
     <div class="reply-bottom">
-      <van-button class="write-btn" size="small" round>写评论</van-button>
+      <van-button
+        class="write-btn"
+        size="small"
+        round
+        @click="isPostShow = true"
+      >写评论</van-button>
     </div>
+    <!-- /底部区域 -->
+
+    <!-- 发布评论 -->
+    <van-popup v-model="isPostShow" position="bottom">
+      123
+    </van-popup>
     <!-- /发布评论 -->
   </div>
 </template>
@@ -49,7 +60,9 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      isPostShow: false
+    }
   },
   computed: {},
   watch: {},
