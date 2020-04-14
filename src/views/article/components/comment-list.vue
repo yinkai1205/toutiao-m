@@ -33,6 +33,14 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    type: {
+      type: String,
+      // 自定义 Prop 数据验证
+      validator (value) {
+        return ['a', 'c'].includes(value)
+      },
+      default: 'a'
     }
   },
   data () {
@@ -54,10 +62,18 @@ export default {
   methods: {
     async onLoad () {
       try {
+        // 获取文章的评论和获取评论的回复是同一个接口
+        // 唯一的区别是接口参数不一样
+        //    type
+        //      a 文章的评论
+        //      c 评论的回复
+        //    source
+        //      文章的评论，则传递文章的 ID
+        //      评论的回复，则传递评论的 ID
         // 1. 请求获取数据
         const { data } = await getComments({
-          type: 'a', //  评论类型，a-对文章(article)的评论，c-对评论(comment)的回复
-          source: this.source, // 源id，文章id或评论id
+          type: this.type, //  评论类型，a-对文章(article)的评论，c-对评论(comment)的回复
+          source: this.source.toString(), // 源id，文章id或评论id
           offset: this.offset, // 获取评论数据的偏移量，值为评论id，表示从此id的数据向后取，不传表示从第一页开始读取数据
           limit: this.limit // 获取的评论数据个数，不传表示采用后端服务设定的默认每页数据量
         })
