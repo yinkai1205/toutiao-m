@@ -70,7 +70,11 @@
       v-model="isUpdateBirthdayShow"
       position="bottom"
     >
-      <update-birthday />
+      <update-birthday
+        v-if="isUpdateBirthdayShow"
+        v-model="user.birthday"
+        @close="isUpdateBirthdayShow = false"
+      />
     </van-popup>
     <!-- /编辑生日 -->
   </div>
