@@ -11,7 +11,7 @@
     <!-- 输入框 -->
     <div class="field-wrap">
       <van-field
-        v-model="message"
+        v-model="localName"
         rows="2"
         autosize
         type="textarea"
@@ -28,10 +28,15 @@
 export default {
   name: 'UpdateName',
   components: {},
-  props: {},
+  props: {
+    value: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
-      message: ''
+      localName: this.value
     }
   },
   computed: {},
