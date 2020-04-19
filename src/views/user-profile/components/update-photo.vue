@@ -1,6 +1,6 @@
 <template>
   <div class="update-photo">
-    <img class="img" :src="img">
+    <img class="img" :src="img" ref="img">
 
     <div class="toolbar">
       <div class="cancel" @click="$emit('close')">取消</div>
@@ -10,6 +10,9 @@
 </template>
 
 <script>
+import 'cropperjs/dist/cropper.css'
+import Cropper from 'cropperjs'
+
 export default {
   name: 'UpdatePhoto',
   components: {},
@@ -25,7 +28,22 @@ export default {
   computed: {},
   watch: {},
   created () {},
-  mounted () {},
+  mounted () {
+    const image = this.$refs.img
+    const cropper = new Cropper(image, {
+      aspectRatio: 16 / 9,
+      crop (event) {
+        console.log(event.detail.x)
+        console.log(event.detail.y)
+        console.log(event.detail.width)
+        console.log(event.detail.height)
+        console.log(event.detail.rotate)
+        console.log(event.detail.scaleX)
+        console.log(event.detail.scaleY)
+      }
+    })
+    console.log(cropper)
+  },
   methods: {}
 }
 </script>
@@ -53,6 +71,7 @@ export default {
   }
 }
 .img {
+  display: block;
   max-width: 100%;
 }
 </style>
