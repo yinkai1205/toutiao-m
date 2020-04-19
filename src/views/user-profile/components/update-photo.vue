@@ -31,16 +31,13 @@ export default {
   mounted () {
     const image = this.$refs.img
     const cropper = new Cropper(image, {
-      aspectRatio: 16 / 9,
-      crop (event) {
-        console.log(event.detail.x)
-        console.log(event.detail.y)
-        console.log(event.detail.width)
-        console.log(event.detail.height)
-        console.log(event.detail.rotate)
-        console.log(event.detail.scaleX)
-        console.log(event.detail.scaleY)
-      }
+      viewMode: 1,
+      dragMode: 'move',
+      aspectRatio: 1,
+      autoCropArea: 1,
+      cropBoxMovable: false,
+      cropBoxResizable: false,
+      background: false
     })
     console.log(cropper)
   },
