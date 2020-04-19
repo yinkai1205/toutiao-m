@@ -4,7 +4,7 @@
 
     <div class="toolbar">
       <div class="cancel" @click="$emit('close')">取消</div>
-      <div class="confirm">完成</div>
+      <div class="confirm" @click="onConfirm">完成</div>
     </div>
   </div>
 </template>
@@ -23,25 +23,36 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      cropper: null
+    }
   },
   computed: {},
   watch: {},
   created () {},
   mounted () {
     const image = this.$refs.img
-    const cropper = new Cropper(image, {
+    this.cropper = new Cropper(image, {
       viewMode: 1,
       dragMode: 'move',
       aspectRatio: 1,
-      autoCropArea: 1,
+      // autoCropArea: 1,
       cropBoxMovable: false,
       cropBoxResizable: false,
       background: false
     })
-    console.log(cropper)
   },
-  methods: {}
+  methods: {
+    onConfirm () {
+      // 基于服务端的裁切使用 getData 方法获取裁切参数
+      // console.log(this.cropper.getData())
+
+      // 纯客户端的裁切使用 getCroppedCanvas 获取裁切的文件对象
+      this.cropper.getCroppedCanvas().toBlob(blob => {
+        console.log(blob)
+      })
+    }
+  }
 }
 </script>
 
