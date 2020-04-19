@@ -9,8 +9,21 @@
     />
     <!-- /导航栏 -->
 
+    <input
+      type="file"
+      hidden
+      ref="file"
+      @change="onFileChange"
+    >
+
     <!-- 个人信息 -->
-    <van-cell title="头像" is-link>
+    <van-cell
+      class="photo-cell"
+      title="头像"
+      is-link
+      center
+      @click="$refs.file.click()"
+    >
       <van-image
         class="avatar"
         fit="cover"
@@ -116,6 +129,14 @@ export default {
       } catch (err) {
         this.$toast('数据获取失败')
       }
+    },
+
+    onFileChange () {
+      // 获取文件对象
+      const file = this.$refs.file.files[0]
+      // 基于文章对象获取 blob 数据
+      const data = window.URL.createObjectURL(file)
+      console.log(data)
     }
   }
 }
@@ -130,6 +151,13 @@ export default {
 
   .van-popup {
     background-color: #f5f7f9;
+  }
+
+  .photo-cell {
+    .van-cell__value {
+      display: flex;
+      flex-direction: row-reverse;
+    }
   }
 }
 </style>
